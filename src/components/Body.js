@@ -1,10 +1,17 @@
 import React from 'react'
 import Login from './Login'
+import Browse from './Browse'
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
 
 const Body = () => {
 
   return (
-    <Login/>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/browse' element={<Browse/>}/>
+      <Route path='/' element={<Login/>}/>
+    </Routes>
+    </BrowserRouter>
   )
 }
 
