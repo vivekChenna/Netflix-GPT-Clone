@@ -1,5 +1,9 @@
 export const validateFunc = (email , password) => {
 
+    if(!email || !password){
+        return 'Enter All Details';
+    }
+
   let ValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
 
 //   Minimum eight characters, at least one letter, one number and one special character:

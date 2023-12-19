@@ -1,9 +1,17 @@
 import { useState , useRef } from 'react'
+import {useNavigate} from 'react-router-dom'
+import {useDispatch} from 'react-redux';
 import { IoEye , IoEyeOff } from "react-icons/io5";
 import Header from './Header'
 import {validateFunc} from '../utils/validate';
+import {createUserWithEmailAndPassword , signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
+import {auth} from '../utils/firebase';
+import { AddUser } from '../redux/userSlice';
 
 const Login = () => {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [isSignInForm, setIsSignInForm] = useState(true)
   const [showPassword , setShowPassword] = useState(false);
@@ -12,12 +20,71 @@ const Login = () => {
 
   const email = useRef(null);
   const password = useRef(null);
+  const name = useRef(null);
 
 
   const HandleSubmitClick = ()=>{
 
    const msg = validateFunc(email.current.value , password.current.value);
     setShowErrorMessage(msg);
+
+    // if any msg occurs that means something went wrong so we are returning
+    if(msg) return ;
+    // otherwise Sign Up or Sign In the user
+
+    console.log(auth);
+
+    if(!isSignInForm){
+      // Sign Up logic implementation
+       createUserWithEmailAndPassword(auth , email.current.value , password.current.value).then((userCredential)=>{
+        // Signed up
+        console.log('printing info of auth');
+        console.log(auth);
+        const user = userCredential.user;
+        updateProfile(user, {
+          displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/99558167?v=4"
+        }).then(() => {
+          const {uid, displayName, email , photoURL} = auth.currentUser;
+          dispatch(AddUser({uid: uid,  email: email,  displayName: displayName , photoURL: photoURL}))
+        navigate('/browse');
+          // Profile updated!
+          // ...
+        }).catch((error) => {
+          // An error occurred
+          // ...
+        });
+
+      }).catch((error)=>{
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if(errorCode==='auth/email-already-in-use'){
+          console.log('hello');
+          setShowErrorMessage('Email Already Registered');
+        }
+        else{
+          setShowErrorMessage(errorCode+'-'+errorMessage);
+        }
+      })
+    }else{
+
+      signInWithEmailAndPassword(auth , email.current.value , password.current.value).then((userCredential)=>{
+        // Signed In
+        console.log('we are in the sign in function');
+        const user = userCredential.user;
+        console.log(user);
+        navigate('/browse');
+      }).catch((error)=>{
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        if(errorCode ==='auth/invalid-credential'){
+          setShowErrorMessage('Invalid Email or Password');
+        }
+        else{
+          setShowErrorMessage(errorCode+'-'+errorMessage);
+        }
+      })
+    }
   }
 
   return (
@@ -32,7 +99,7 @@ const Login = () => {
           {isSignInForm ? 'Sign In' : 'Sign Up'}
         </p>
         <div className=' flex gap-5 flex-col'>
-          {isSignInForm ? null : <input type='text' placeholder='Full Name' className='py-3 pl-3 bg-zinc-700 rounded-md outline-none text-white' />}
+          {isSignInForm ? null : <input type='text' placeholder='Full Name' className='py-3 pl-3 bg-zinc-700 rounded-md outline-none text-white' ref={name} />}
           <input ref={email} type="email" placeholder='Email Address' className=' py-3 pl-3 bg-zinc-700 rounded-md outline-none text-white' />
           <div className=' flex items-center bg-zinc-700 justify-between rounded-md pr-2'>
           <input ref={password} type={showPassword ? 'text':'password'} placeholder='Password' className=' pl-3 py-3 bg-zinc-700 rounded-md outline-none text-white' />
