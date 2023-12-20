@@ -1,5 +1,4 @@
 import { useState , useRef } from 'react'
-import {useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux';
 import { IoEye , IoEyeOff } from "react-icons/io5";
 import Header from './Header'
@@ -10,7 +9,6 @@ import { AddUser } from '../redux/userSlice';
 
 const Login = () => {
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [isSignInForm, setIsSignInForm] = useState(true)
@@ -46,7 +44,7 @@ const Login = () => {
         }).then(() => {
           const {uid, displayName, email , photoURL} = auth.currentUser;
           dispatch(AddUser({uid: uid,  email: email,  displayName: displayName , photoURL: photoURL}))
-        navigate('/browse');
+    
           // Profile updated!
           // ...
         }).catch((error) => {
@@ -72,7 +70,6 @@ const Login = () => {
         console.log('we are in the sign in function');
         const user = userCredential.user;
         console.log(user);
-        navigate('/browse');
       }).catch((error)=>{
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -122,4 +119,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
