@@ -60,10 +60,10 @@ const Header = () => {
             <div className=" flex">
               {" "}
               <p className=" text-xl font-bold text-red-500">
-                <span  className=" text-white font-semibold">Hye,</span>{user.displayName}
+                <span className=" text-white font-semibold">Hye,</span>
+                {user.displayName}
               </p>{" "}
               <img
-              
                 src={user.photoURL}
                 alt="user-logo"
                 className=" w-12"
