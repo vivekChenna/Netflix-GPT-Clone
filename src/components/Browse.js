@@ -1,6 +1,8 @@
 import Header from "./Header";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
+import GPTSearchPage from "./GPTSeachPage";
+import { useSelector } from "react-redux";
 import {
   useNowPlayingMovies,
   usePopularMovies,
@@ -14,11 +16,19 @@ const Browse = () => {
   useTopRatedMovies();
   useUpComingMovies();
 
+  const showGPTPage = useSelector((store) => store.gpt.showGPTPage);
+
   return (
     <div className=" overflow-x-hidden">
       <Header />
-      <MainContainer />
-      <SecondaryContainer />
+      {showGPTPage ? (
+        <GPTSearchPage />
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
     </div>
   );
 };
