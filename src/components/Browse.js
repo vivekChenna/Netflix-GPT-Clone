@@ -17,7 +17,6 @@ const Browse = () => {
   useUpComingMovies();
 
   const showGPTPage = useSelector((store) => store.gpt.showGPTPage);
-
   return (
     <div className=" overflow-x-hidden">
       <Header />

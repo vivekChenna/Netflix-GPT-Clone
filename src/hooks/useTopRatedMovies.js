@@ -1,12 +1,14 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Movies_Data_API_Options } from "../constants/constant";
 import { addTopRatedMovies } from "../redux/moviesSlice";
 
 export const useTopRatedMovies = () => {
   const dispatch = useDispatch();
+  const topRatedMovies = useSelector((store) => store.movies.TopRatedMovies);
   useEffect(() => {
-    getTopRatedMovies();
+    // this will be only called when topRated movies is null !topRatedMovies means null
+    !topRatedMovies && getTopRatedMovies();
   }, []);
 
   const getTopRatedMovies = async () => {

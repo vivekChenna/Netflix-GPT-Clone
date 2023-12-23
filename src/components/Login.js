@@ -29,9 +29,7 @@ const Login = () => {
 
     // if any msg occurs that means something went wrong so we are returning
     if (msg) return;
-    // otherwise Sign Up or Sign In the user
-
-    console.log(auth);
+    
 
     if (!isSignInForm) {
       // Sign Up logic implementation
@@ -42,8 +40,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed up
-          console.log("printing info of auth");
-          console.log(auth);
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
@@ -72,7 +68,6 @@ const Login = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           if (errorCode === "auth/email-already-in-use") {
-            console.log("hello");
             setShowErrorMessage("Email Already Registered");
           } else {
             setShowErrorMessage(errorCode + "-" + errorMessage);
@@ -86,9 +81,9 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed In
-          console.log("we are in the sign in function");
+      
           const user = userCredential.user;
-          console.log(user);
+        
         })
         .catch((error) => {
           const errorCode = error.code;

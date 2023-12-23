@@ -1,8 +1,15 @@
 import { POSTER_IMG_CDN } from "../constants/constant";
 const MovieCard = ({ posterPath }) => {
+  if (!posterPath) {
+    return;
+  }
   return (
     <div className=" w-48">
-      <img className=" w-fit" src={POSTER_IMG_CDN + posterPath} alt="movie-img" />
+      <img
+        className=" w-fit"
+        src={POSTER_IMG_CDN + posterPath}
+        alt="movie-img"
+      />
     </div>
   );
 };

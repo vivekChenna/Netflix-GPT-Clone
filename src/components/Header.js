@@ -18,8 +18,6 @@ const Header = () => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, displayName, email, photoURL } = user;
-        console.log(user);
-        console.log(uid, displayName, email);
         dispatch(
           AddUser({
             uid: uid,
