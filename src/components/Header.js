@@ -78,7 +78,7 @@ const Header = () => {
                 onClick={() => setShowSignOut(!showSignOut)}
               />
 
-              <div className="">
+              <div>
                 {showSignOut && (
                   <button
                     className=" text-white font-semibold text-sm md:text-lg"

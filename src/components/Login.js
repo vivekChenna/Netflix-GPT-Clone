@@ -99,11 +99,15 @@ const Login = () => {
   return (
     <div className="">
       <div className=" absolute">
-        <img src={BG_IMG} alt="bg-img" className=" h-screen object-cover md:h-full md:object-cover" />
+        <img
+          src={BG_IMG}
+          alt="bg-img"
+          className=" h-screen object-cover md:h-full md:object-cover"
+        />
       </div>
       <Header />
       <form
-        className=" absolute max-w-sm h-3/5 my-28 left-0 right-0 mx-auto px-16 pt-10 flex flex-col gap-6 bg-black bg-opacity-80 md:max-w-md md:h-3/4"
+        className=" absolute max-w-sm h-3/4 mt-20 left-0 right-0 mx-auto px-16 pt-10 flex flex-col gap-6 bg-black bg-opacity-80 md:max-w-md md:mt-28"
         onClick={(e) => e.preventDefault()}
       >
         <p className=" text-white font-semibold text-2xl md:text-4xl">
