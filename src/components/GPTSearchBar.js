@@ -48,16 +48,16 @@ const GPTSearchBar = () => {
   };
 
   return (
-    <div className=" pt-[10%] flex items-center justify-center">
+    <div className=" pt-[5%] flex items-center justify-center md:pt-[12%] md:z-10">
       <form onSubmit={(e) => e.preventDefault()} className=" flex gap-2 ">
         <input
           ref={inputSearch}
           type="text"
           placeholder="what would you like to watch today?"
-          className=" w-96 rounded-lg py-2 px-4 outline-none font-semibold text-xl"
+          className=" w-72 rounded-lg outline-none font-semibold text-sm md:text-xl md:w-96 md:py-2 px-4"
         />
         <button
-          className=" text-white bg-red-500 p-3 font-bold text-xl rounded-lg "
+          className=" text-white bg-red-500 p-1 font-bold text-lg rounded-lg  md:p-3 md:text-xl"
           onClick={handleBtnClick}
         >
           Search

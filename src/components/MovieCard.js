@@ -4,7 +4,7 @@ const MovieCard = ({ posterPath }) => {
     return;
   }
   return (
-    <div className=" w-48">
+    <div className=" w-32  md:w-48">
       <img
         className=" w-fit"
         src={POSTER_IMG_CDN + posterPath}

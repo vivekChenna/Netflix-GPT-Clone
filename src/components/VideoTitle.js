@@ -3,15 +3,29 @@ import { GrPlayFill } from "react-icons/gr";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className=" pt-[15%] px-10 absolute bg-gradient-to-r from-gray-900 aspect-video">
-      <p className=" w-1/3 text-4xl font-bold mb-3 text-white">{title}</p>
-      <p className=" w-1/3 font-semibold mb-3 text-white text-lg">{overview}</p>
-      <div className=" flex gap-5">
-        <button className="flex items-center gap-2 py-1 px-4 bg-white text-2xl font-semibold text-black rounded-md hover:bg-opacity-80">
-          <GrPlayFill color="black" fontSize="1.65rem" /> Play
+    <div className="pt-[31.7%] pl-2 pr-14 absolute bg-gradient-to-r from-gray-900 aspect-video md:pt-[19%] md:px-10">
+      <p className="text-lg font-semibold mb-3 text-white md:text-4xl md:font-bold">
+        {title}
+      </p>
+      <p className=" hidden w-1/3 font-semibold mb-3 text-white text-lg md:inline-block">
+        {overview}
+      </p>
+      <div className=" flex gap-2 md:gap-5">
+        <button className="flex items-center bg-white text-sm font-semibold text-black rounded-md hover:bg-opacity-80 p-1 md:text-2xl md:gap-2">
+          <GrPlayFill
+            color="black"
+            fontSize="1rem"
+            className=" text-lg md:text-2xl"
+          />
+          Play
         </button>
-        <button className="flex items-center gap-2 py-1 px-4 bg-zinc-400 text-2xl font-semibold text-white rounded-md">
-          <AiOutlineInfoCircle color="white" fontSize="1.65rem" /> More Info
+        <button className="flex items-center gap-2 text-sm bg-zinc-400 font-semibold text-white rounded-md p-1 md:text-2xl">
+          <AiOutlineInfoCircle
+            color="white"
+            fontSize="1rem"
+            className=" text-lg md:text-2xl"
+          />{" "}
+          More Info
         </button>
       </div>
     </div>

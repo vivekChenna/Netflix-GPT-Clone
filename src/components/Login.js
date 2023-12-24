@@ -29,7 +29,6 @@ const Login = () => {
 
     // if any msg occurs that means something went wrong so we are returning
     if (msg) return;
-    
 
     if (!isSignInForm) {
       // Sign Up logic implementation
@@ -81,9 +80,8 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed In
-      
+
           const user = userCredential.user;
-        
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -99,16 +97,16 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <Header />
+    <div className="">
       <div className=" absolute">
-        <img src={BG_IMG} alt="bg-img" />
+        <img src={BG_IMG} alt="bg-img" className=" h-screen object-cover md:h-full md:object-cover" />
       </div>
+      <Header />
       <form
-        className=" absolute max-w-md h-3/4 my-28 left-0 right-0 mx-auto px-16 pt-10 flex flex-col gap-6 bg-black bg-opacity-80"
+        className=" absolute max-w-sm h-3/5 my-28 left-0 right-0 mx-auto px-16 pt-10 flex flex-col gap-6 bg-black bg-opacity-80 md:max-w-md md:h-3/4"
         onClick={(e) => e.preventDefault()}
       >
-        <p className=" text-white font-semibold text-4xl">
+        <p className=" text-white font-semibold text-2xl md:text-4xl">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </p>
         <div className=" flex gap-5 flex-col">
@@ -116,7 +114,7 @@ const Login = () => {
             <input
               type="text"
               placeholder="Full Name"
-              className="py-3 pl-3 bg-zinc-700 rounded-md outline-none text-white"
+              className="py-3 pl-3 bg-zinc-700 rounded-md outline-none text-white text-sm md:text-lg"
               ref={name}
             />
           )}
@@ -124,14 +122,14 @@ const Login = () => {
             ref={email}
             type="email"
             placeholder="Email Address"
-            className=" py-3 pl-3 bg-zinc-700 rounded-md outline-none text-white"
+            className=" bg-zinc-700 rounded-md outline-none text-white py-2 pl-2 md:py-3 md:pl-3 md:text-lg"
           />
           <div className=" flex items-center bg-zinc-700 justify-between rounded-md pr-2">
             <input
               ref={password}
               type={showPassword ? "text" : "password"}
               placeholder="Password"
-              className=" pl-3 py-3 bg-zinc-700 rounded-md outline-none text-white"
+              className="bg-zinc-700 rounded-md outline-none text-sm text-white py-2 pl-2 md:py-3 md:pl-3 md:text-lg"
             />
             {showPassword ? (
               <IoEyeOff
@@ -143,7 +141,8 @@ const Login = () => {
             ) : (
               <IoEye
                 color="gray"
-                fontSize="1.4rem"
+                fontSize="1rem"
+                className=" text-lg md:text-2xl"
                 cursor="pointer"
                 onClick={() => setShowPassword(!showPassword)}
               />
@@ -154,7 +153,7 @@ const Login = () => {
           )}
         </div>
         <button
-          className=" bg-red-600 py-3 text-white rounded-md"
+          className=" bg-red-600 text-white text-sm rounded-md py-2 pl-2 md:py-3 md:pl-3 md:text-lg"
           onClick={() => HandleSubmitClick()}
         >
           {isSignInForm ? "Sign In" : "Sign Up"}
